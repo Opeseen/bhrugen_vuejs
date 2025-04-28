@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>  
+  <body>
+    <div id="app">
+      <a href="http://google.com" v-on:click.prevent="buttonClick('Prevent Navigation - Once', 'Hello Vue', $event)"> 
+        Google
+      </a>
+      <br>
+      <!-- <div v-on:click="buttonClick('Vue is exciting - Div', 'Hello Vue', $event)"> -->
+      <!-- <div v-on:click.once="buttonClick('Vue is exciting - Once', 'Hello Vue', $event)"> -->
+        
+        Something Exciting
+        <div>
+          <input type="text" v-on:keyup.enter="pressEnter">
+        </div>
+        <button v-on:click.stop="buttonClick('Vue is exciting - Button', 'Hello Vue', $event)">Click Me</button>
+        <p>
+          X: {{ x }}<br>
+          Y: {{ y }}
+        </p>
+      <!-- </div> -->
+      <!-- </div> -->
+    </div>
+  </body>
+  <script>
+    const {createApp, ref, reactive} = Vue;
+    const fontSizeTemp = 60;
+    createApp({
+      setup() {
+        let x = ref(0);
+        let y = ref(0);
+
+
+        function buttonClick(newMessage, newMessage2, event) {
+          // console.log(event)
+          x.value = event.x;
+          y.value = event.y;
+          alert(newMessage);
+          // alert(newMessage2);
+        }
+
+        function pressEnter(event) {
+          alert('Enter key was pressed!');
+        }
+
+        return {
+          buttonClick,
+          x,
+          y,
+          pressEnter
+        }
+      },
+    }).mount("#app");
+  </script>
+</html>

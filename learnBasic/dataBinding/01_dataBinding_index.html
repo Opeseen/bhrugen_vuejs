@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>  
+  <body>
+    <div id="app">
+      <div>Learn Vue</div>
+      <!-- <p>{{counter}}</p> -->
+      <p>{{obj.count}}</p>
+      <p>{{getFullName}}</p>
+      <!-- <button v-on:click="counter++">Increment</button>
+      <button v-on:click="counter--">Decrement</button> -->
+      <button v-on:click="obj.count++">Increment</button>
+      <button v-on:click="obj.count--">Decrement</button>
+      <br><br>
+      <p>First Name: <input type="text" v-model="firstname" /></p>
+      <!-- <br>
+      Name:
+      <input type="text" v-model.trim="name" />
+      <br> <br>
+      Age:
+      <input type="text" v-model.lazy="age" />
+      <input type="text" v-model.number="age" />
+      <p>{{name}} is {{age}} years old.</p> -->
+    </div>
+  </body>
+  <script>
+    const {createApp, ref, reactive, computed, watch} = Vue;
+    const fontSizeTemp = 60;
+    let name = ref("Ben");
+    let age = ref(20);
+    createApp({
+      setup() {
+        let counter = ref(0);
+        const obj = reactive({count: 0});
+        let firstname = ref("Ben");
+        let lastname = ref("Gordon");
+
+        // watch(() => counter.value, (newValue,oldValue) => {
+        //   console.log("Counter changed from ", oldValue, " to ", newValue);
+        //   if(newValue === 5){
+        //     alert("Counter is 5 now!");
+        //   };
+        // });
+
+        // watch(counter, (newValue,oldValue) => {
+        //   console.log("Counter changed from ", oldValue, " to ", newValue);
+        //   if(newValue === 5){
+        //     alert("Counter is 5 now!");
+        //   };
+        // });
+
+        watch(() => obj.count, (newValue,oldValue) => {
+          console.log("Counter changed from ", oldValue, " to ", newValue);
+          if(newValue === 5){
+            alert("Counter is 5 now!");
+          };
+        });
+
+
+        const getFullName = computed( (previous) => {
+          console.log("Previous value is: ", previous);
+          if(previous === "Ben 1 Gordon"){
+            console.log("Previous value is Ben Gordon, so returning the same value.");
+          }
+          console.log("getFullname() called");
+          return `${firstname.value} ${lastname.value}`;
+        });
+        return {
+          name, age,
+          getFullName,
+          counter,
+          firstname,
+          obj
+        }
+      },
+    }).mount("#app");
+  </script>
+</html>
