@@ -9,7 +9,7 @@
           :ownername="contact.ownerName"
           :email="contact.email"
           :isFavorite="contact.isFavorite"
-          @update-favorite="contact.isFavorite = !contact.isFavorite"
+          @update-favorite="contact.isFavorite = onUpdateFavorite($event, contact.phone)"
         ></Contact>
       </div>
     </div>
@@ -42,9 +42,15 @@
       phone:6661234567,
       ownerName: ownerName,
       email:"mike@example.com",
-      isFavorite: false
+      isFavorite: true
     }
   ]);
+  function onUpdateFavorite(oldValuesFromChildComponent, phoneNumberFromParent){
+    console.log(phoneNumberFromParent)
+    console.log(oldValuesFromChildComponent)
+    // return !oldValuesFromChildComponent[0];
+    return !oldValuesFromChildComponent.isFavorite;
+  };
 </script>
 
 <style></style>

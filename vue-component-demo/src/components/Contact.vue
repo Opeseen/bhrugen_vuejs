@@ -6,7 +6,12 @@
         <p>Email : {{ email }}</p>
         <p>Phone : {{ phone }}</p>
       </div>
-      <div @click="toggleFavorite" class="col-3">
+      <!-- <div @click="toggleFavorite" class="col-3">
+        <button :class="[isFavorite ? 'btn btn-warning' : 'btn btn-success']">
+          {{ isFavorite ? "Remove from" : "Add to" }} Favorite
+        </button>
+      </div> -->
+      <div @click="emit('update-favorite', {isFavorite:props.isFavorite, name:props.name})" class="col-3">
         <button :class="[isFavorite ? 'btn btn-warning' : 'btn btn-success']">
           {{ isFavorite ? "Remove from" : "Add to" }} Favorite
         </button>
@@ -31,6 +36,7 @@
   const emit = defineEmits(["update-favorite"]);
 
   function toggleFavorite() {
-    emit("update-favorite")
+    // emit("update-favorite", [props.isFavorite, props.name]);
+    // emit("update-favorite", {isFavorite:props.isFavorite, name:props.name});
   };
 </script>
