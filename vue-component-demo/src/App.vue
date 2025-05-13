@@ -1,27 +1,30 @@
 <template>
-  <div class="container">
-    <div>{{ message }}</div>
-    <div class="row">
-      <div class="col-12" v-for="contact in contacts" :key="contact.name">
-        <Contact
-          :name="contact.name"
-          :phone="contact.phone"
-          :ownername="contact.ownerName"
-          :email="contact.email"
-          :isFavorite="contact.isFavorite"
-          @update-favorite="contact.isFavorite = onUpdateFavorite($event, contact.phone)"
-        ></Contact>
+  <div class="bg text pt-3">
+    <div class="container">
+      <div class="text-dark float-end">Contact Owner Name: <input class="border rounded p-1" v-model="ownerName" readonly></div>
+      <br><br>
+      <AddContact @add-contact="onAddContact"></AddContact>
+      <div class="row">
+        <div class="col-12" v-for="contact in contacts" :key="contact.name">
+          <Contact
+            :name="contact.name"
+            :phone="contact.phone"
+            :ownername="contact.ownerName"
+            :email="contact.email"
+            :isFavorite="contact.isFavorite"
+            @update-favorite="contact.isFavorite = onUpdateFavorite($event, contact.phone)"
+          ></Contact>
+        </div>
       </div>
     </div>
   </div>
-
 </template>
 
 <script setup>
   import {ref, reactive } from 'vue';
   import Contact from './components/Contact.vue';
-  const message = "Hello Vue"
-  const ownerName = ref("Jembe")
+  import AddContact from './components/AddContact.vue';
+  const ownerName = ref("Mr Yomi")
   const contacts = reactive([
     {
       name: "Opeyemi",
@@ -45,6 +48,12 @@
       isFavorite: true
     }
   ]);
+
+  function onAddContact(contact){
+    contact.ownerName = ownerName.value;
+    contact.isFavorite = false;
+    contacts.push(contact);
+  };
   function onUpdateFavorite(oldValuesFromChildComponent, phoneNumberFromParent){
     console.log(phoneNumberFromParent)
     console.log(oldValuesFromChildComponent)
