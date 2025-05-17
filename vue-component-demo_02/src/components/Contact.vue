@@ -6,18 +6,13 @@
         <p>Email : {{ email }}</p>
         <p>Phone : {{ phone }}</p>
       </div>
-      <!-- <div @click="toggleFavorite" class="col-3">
-        <button :class="[isFavorite ? 'btn btn-warning' : 'btn btn-success']">
-          {{ isFavorite ? "Remove from" : "Add to" }} Favorite
-        </button>
-      </div> -->
       <div @click="emit('update-favorite', {isFavorite:props.isFavorite, name:props.name})" class="col-3">
         <button :class="[isFavorite ? 'btn btn-warning form-control' : 'btn btn-success form-control']">
           {{ isFavorite ? "Remove from" : "Add to" }} Favorite
         </button>
       </div>
       <div class="col-4">
-        <LuckyNumber :maxNumber="maxLuckyNumber"></LuckyNumber>
+        <LuckyNumber></LuckyNumber>
       </div>
     </div>
     <span class="float-end small" v-if="ownername != ''">
@@ -35,13 +30,7 @@ import LuckyNumber from './LuckyNumber.vue';
     ownername: String,
     email: {type: String, required: false, default:"hello@examplevue.com"},
     isFavorite: Boolean,
-    maxLuckyNumber: Number
   });
 
   const emit = defineEmits(["update-favorite"]);
-
-  function toggleFavorite() {
-    // emit("update-favorite", [props.isFavorite, props.name]);
-    // emit("update-favorite", {isFavorite:props.isFavorite, name:props.name});
-  };
 </script>

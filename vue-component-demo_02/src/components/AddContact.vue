@@ -21,26 +21,25 @@
 </template>
 
 <script setup>
-  import {reactive} from 'vue';
-  const emit = defineEmits(["add-contact"]);
+  import {reactive, defineProps} from 'vue';
   const contact = reactive({
     name:"",
     phone:"",
     email:"",
   });
 
+  const props = defineProps({onAddContact: Function});
   function addContact(){
     if(!contact.name || !contact.email || !contact.phone ){
       return alert("Missing required fields");
     }
-    emit("add-contact", {
+    props.onAddContact({
       name: contact.name,
       phone: contact.phone,
       email: contact.email
     });
-    console.log(contact);
+    contact.name="";
     contact.email="";
-    contact.name=="";
     contact.phone="";
   };
 </script>

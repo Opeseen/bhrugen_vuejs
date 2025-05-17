@@ -8,7 +8,7 @@
       </div>
 
       <br>
-      <AddContact @add-contact="onAddContact"></AddContact>
+      <AddContact :onAddContact="onAddContact"></AddContact>
       <div class="row">
         <div class="col-12" v-for="contact in contacts" :key="contact.name">
           <Contact
@@ -17,7 +17,6 @@
             :ownername="contact.ownerName"
             :email="contact.email"
             :isFavorite="contact.isFavorite"
-            :maxLuckyNumber="maxNumber"
             @update-favorite="contact.isFavorite = onUpdateFavorite($event, contact.phone)"
           ></Contact>
         </div>
@@ -27,11 +26,12 @@
 </template>
 
 <script setup>
-  import {ref, reactive } from 'vue';
+  import {ref, reactive, provide } from 'vue';
   import Contact from './components/Contact.vue';
   import AddContact from './components/AddContact.vue';
   const ownerName = ref("Mr Yomi")
   const maxNumber = ref(100);
+  provide("maxLuckyNumber", maxNumber);
   const contacts = reactive([
     {
       name: "Opeyemi",
@@ -62,9 +62,6 @@
     contacts.push(contact);
   };
   function onUpdateFavorite(oldValuesFromChildComponent, phoneNumberFromParent){
-    console.log(phoneNumberFromParent)
-    console.log(oldValuesFromChildComponent)
-    // return !oldValuesFromChildComponent[0];
     return !oldValuesFromChildComponent.isFavorite;
   };
 </script>
