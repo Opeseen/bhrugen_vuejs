@@ -1,5 +1,5 @@
 <template>
-  <div class="col-6 bg-white text-center p-4">
+  <div class="col-3 bg-white text-center p-6">
     <button class="btn btn-danger text-black" @click="generateLuckyNumber()">
       <span v-if="luckyNumber === 0">
         Generate Lucky Number <br/> Range(1- 100)

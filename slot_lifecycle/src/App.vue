@@ -1,18 +1,7 @@
 <template>
-  <div class="bg text pt-3" :style="{height: '100vh'}">
-    <h1 class="text-center text-success">ContactOpedia</h1>
-    <div class="container">
-      <LuckyNumber></LuckyNumber>
-      <br/>
-      <LuckyNumberV2></LuckyNumberV2>
-    </div>
-  </div>
+  <LuckyNumberParentComponent></LuckyNumberParentComponent>
 </template>
 
 <script setup>
-  import {ref, reactive } from 'vue';
-  import LuckyNumber from "./components/LuckyNumber.vue";
-  import LuckyNumberV2 from "./components/LuckyNumberV2.vue";
+  import LuckyNumberParentComponent from './components/LuckyNumberParentComponent.vue';
 </script>
-
-<style></style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="col-6 bg-white text-center p-4">
+  <div class="col-3 bg-white text-center p-6">
     <h4 class="text-success">Random Number Generator</h4>
     <hr/>
     Max Range: 
@@ -7,7 +7,7 @@
     <br><br>
     <button class="btn btn-danger text-black" @click="generateLuckyNumber()">
       <span v-if="luckyNumber === 0">
-        Generate Lucky Number <br/> Range(1- 100)
+        Generate Lucky Number <br/> Range(1- {{ maxNumber }})
       </span>
       <span v-else>Lucky Number: {{ luckyNumber }} <br/>
         Click to generate new lucky number
