@@ -1,5 +1,5 @@
 <template>
-  <div class="col-3 bg-white text-center p-6">
+  <div class="container text-center bg-white">
     <h4 class="text-success">Random Number Generator</h4>
     <hr/>
     Max Range: 
