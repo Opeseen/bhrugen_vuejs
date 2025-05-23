@@ -1,8 +1,10 @@
 <template>
-  <button @click="count++">Clicked {{ count }} times</button>
+  <button @click="increment">++</button>
+  <span>{{ count }}</span>
+  <button @click="decrement">--</button> 
 </template>
 
 <script setup>
-  import { ref } from 'vue';
-  const count = ref(0);
+  import { useCounter } from '../composibles/useCounter';
+  const {count, increment, decrement} = useCounter();
 </script>
