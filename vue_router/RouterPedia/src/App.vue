@@ -1,5 +1,8 @@
 <template>
-  <h1>Hello World</h1>
+  <Header></Header>
   <router-view></router-view>
 </template>
 
+<script setup>
+  import Header from './components/Layout/Header.vue';
+</script>
