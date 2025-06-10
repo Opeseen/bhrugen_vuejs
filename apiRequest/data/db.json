@@ -1,0 +1,46 @@
+{
+  "destination": [
+    {
+      "id": 1,
+      "name": "Bangkok",
+      "days": 2,
+      "funFact": "Bangkok is the capital and most popular",
+      "price": 1000
+    },
+    {
+      "id": 2,
+      "name": "Phuket",
+      "days": 3,
+      "funFact": "Phuket is Thailand's largest island",
+      "price": 1500
+    },
+    {
+      "id": 3,
+      "name": "Chiang Mai",
+      "days": 4,
+      "funFact": "Chiang Mai is known for its temples",
+      "price": 1200
+    },
+    {
+      "id": 4,
+      "name": "Krabi",
+      "days": 5,
+      "funFact": "Krabi is famous for its stunning beaches",
+      "price": 1800
+    },
+    {
+      "id": 5,
+      "name": "Koh Samui",
+      "days": 6,
+      "funFact": "Koh Samui is known for its palm-fringed beaches",
+      "price": 2000
+    },
+    {
+      "id": 6,
+      "name": "Ayutthaya",
+      "days": 1,
+      "funFact": "Ayutthaya is a UNESCO World Heritage Site",
+      "price": 800
+    }
+  ]
+}
