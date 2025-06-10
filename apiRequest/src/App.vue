@@ -3,6 +3,9 @@
     <div>
       <h1 class="text-success text-center" >RequestOpedia</h1>
       <hr>
+      <div v-if="destinationObj.isLoading" class="d-flex justify-content-center">
+        <Loader />
+      </div>
       <table class="table table-striped table-light">
         <thead>
           <tr>
@@ -28,15 +31,20 @@
   import {reactive, onMounted} from 'vue';
   const destinationObj = reactive({
     destination: [],
+    isLoading: false,
   });
   onMounted( () => {
     loadDestination();
   });
 
   function loadDestination(){
+    destinationObj.isLoading = true;
     axios.get("http://localhost:3000/destination")
     .then((response) => {
-      destinationObj.destination = response.data;
-    });
+      new Promise((resolve) => setTimeout(resolve, 1000)).then(() => {
+        destinationObj.destination = response.data;
+        destinationObj.isLoading = false;
+      });      
+    });  
   };
 </script>
