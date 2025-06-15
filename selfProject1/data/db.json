@@ -1,46 +1,15 @@
 {
-  "destination": [
+  "employees": [
     {
-      "id": "1749556095134",
-      "name": "Bangkok",
-      "days": "2",
-      "funFact": "Bangkok is the capital and most popular",
-      "price": "1000"
-    },
-    {
-      "id": "1749556120930",
-      "name": "Phuket",
-      "days": "3",
-      "funFact": "Phuket is Thailand's largest island",
-      "price": "1500"
-    },
-    {
-      "id": "17495561227713",
-      "name": "Chiang Mai",
-      "days": "4",
-      "funFact": "Chiang Mai is known for its temples",
-      "price": "1200"
-    },
-    {
-      "id": "1749556123970",
-      "name": "Krabi",
-      "days": "5",
-      "funFact": "Krabi is famous for its stunning beaches",
-      "price": "1800"
-    },
-    {
-      "id": "1749556693832",
-      "name": "Nigeria",
-      "days": "4",
-      "funFact": "Abuja is the capital",
-      "price": "1100"
-    },
-    {
-      "id": "1749556778856",
-      "name": "Lagos",
-      "days": "11",
-      "funFact": "Ikeja is the big capital city",
-      "price": "1200"
+      "id": "1749894324172",
+      "firstName": "John",
+      "lastName": "Smith",
+      "email": "john@example.com",
+      "address": "13 Mulero Street",
+      "phone": "08072654350",
+      "state": "Lagos",
+      "city": "Nagpur",
+      "nationality": "Korean"
     }
   ]
 }
