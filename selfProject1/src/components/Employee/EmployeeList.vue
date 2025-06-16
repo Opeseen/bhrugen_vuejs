@@ -26,11 +26,11 @@
               <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
               </svg>
-              Add Employee
+              Add Column
             </button>
           </div>
         </div>
-        <!-- Table starts here -->
+        <!-- Employee Table starts here -->
         <div class="overflow-x-auto">
           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -48,13 +48,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-b dark:border-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600" v-for="employee in employeeList.employees" :key="employee.id">
+                <tr class="border-b dark:border-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer" v-for="employee in employeeList.employees" :key="employee.id">
                   <td class="w-4 p-4">
                     <div class="flex items-center">
                       <input id="" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                       <label for="" class="sr-only">checkbox</label>
                     </div>
-                </td>
+                  </td>
                   <td class="px-4 py-3">{{ employee.firstName }}</td>
                   <td class="px-4 py-3">{{ employee.lastName }}</td>
                   <td class="px-4 py-3">{{ employee.email }}</td>

@@ -99,8 +99,6 @@ async function submitEmployeeData(event) {
     console.error('Error submitting employee data:', error);
   }
 }
-
-
 </script>
 <style>
 </style>
