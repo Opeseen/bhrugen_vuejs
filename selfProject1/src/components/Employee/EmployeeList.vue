@@ -48,10 +48,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-b dark:border-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer" v-for="employee in employeeList.employees" :key="employee.id">
+                <tr class="border-b dark:border-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer" @click="handleEmployeeClick(employee)" 
+                v-for="employee in employeeList.employees" :key="employee.id">
                   <td class="w-4 p-4">
                     <div class="flex items-center">
-                      <input id="" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                      <input id="" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" @click.stop>
                       <label for="" class="sr-only">checkbox</label>
                     </div>
                   </td>
@@ -95,5 +96,9 @@
     .catch((error) => {
       console.error("Error fetching data:", error);
     });
+  };
+
+  function handleEmployeeClick(employee){
+    console.log("Employee id:", employee.id);
   };
 </script>

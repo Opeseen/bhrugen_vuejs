@@ -1,10 +1,11 @@
 <template>
   <Header />
-  <router-view></router-view>
+  <RouterView></RouterView>
   <Footer />
 </template>
 
 <script setup>
+  import { RouterView } from 'vue-router'
   import Header from './components/Layout/Header.vue';
   import Footer from './components/Layout/Footer.vue';
   import { onMounted } from 'vue'

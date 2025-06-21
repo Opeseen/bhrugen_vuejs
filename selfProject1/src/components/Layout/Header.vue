@@ -6,7 +6,7 @@
     </div>
     <ul class="md:flex md:items-center">
       <li class="px-2 py-2 text-sm font-medium m-2">
-        <router-link to="/" class="text-xl hover:text-violet-500">Home</router-link>
+        <RouterLink to="/" class="text-xl hover:text-violet-500">Home</RouterLink>
       </li>
       <li class="px-2 py-2 text-sm font-medium m-2">
         <a href="#" class="text-xl hover:text-violet-500">About</a>
@@ -29,10 +29,10 @@
             <MenuItems class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
               <div class="px-1 py-1">
                 <MenuItem v-slot="{ active }">
-                  <router-link :class="[active ? 'bg-violet-500 text-white' : 'text-gray-900','group flex w-full items-center rounded-md px-2 py-2 text-sm',]" to="/employee">View Employee</router-link>
+                  <RouterLink :class="[active ? 'bg-violet-500 text-white' : 'text-gray-900','group flex w-full items-center rounded-md px-2 py-2 text-sm',]" to="/employee">View Employee</RouterLink>
                 </MenuItem>
                 <MenuItem v-slot="{ active }">
-                  <router-link :class="[active ? 'bg-violet-500 text-white' : 'text-gray-900','group flex w-full items-center rounded-md px-2 py-2 text-sm',]" :to="{ name: 'addEmployee' }">Create Employee</router-link>
+                  <RouterLink :class="[active ? 'bg-violet-500 text-white' : 'text-gray-900','group flex w-full items-center rounded-md px-2 py-2 text-sm',]" :to="{ name: 'addEmployee' }">Create Employee</RouterLink>
                 </MenuItem>
               </div>
             </MenuItems>
@@ -57,7 +57,7 @@
             <MenuItems class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
               <div class="px-1 py-1">
                 <MenuItem v-slot="{ active }">
-                  <router-link :class="[active ? 'bg-violet-500 text-white' : 'text-gray-900','group flex w-full items-center rounded-md px-2 py-2 text-sm',]" to="#">View PayGroup</router-link>
+                  <RouterLink :class="[active ? 'bg-violet-500 text-white' : 'text-gray-900','group flex w-full items-center rounded-md px-2 py-2 text-sm',]" to="#">View PayGroup</RouterLink>
                 </MenuItem>
                 <MenuItem v-slot="{ active }">
                   <button :class="[active ? 'bg-violet-500 text-white' : 'text-gray-900','group flex w-full items-center rounded-md px-2 py-2 text-sm',]">Create PayGroup</button>
@@ -78,6 +78,7 @@
 </template>
 
 <script setup>
+  import { RouterLink } from 'vue-router'
   import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
   import { ChevronDownIcon } from '@heroicons/vue/20/solid'
 </script>
