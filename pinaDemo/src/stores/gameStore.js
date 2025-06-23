@@ -3,14 +3,17 @@ import {ref, computed} from 'vue';
 
 // using the composition api style
 export const useGameStore = defineStore("gameStore", () => {
+  // state
   const score = ref(0);
   const maxHealth = ref(100);
   const maxAttack = ref(30);
   const maxDefense = ref(10);
 
+  // getters
   const getScore = computed(() => score.value);
   const getWinningScore = computed(() => maxHealth.value);
   
+  // actions
   function setNextAttack(){
     let attack = Math.floor(Math.random() * maxAttack.value) +1;
     score.value += attack;

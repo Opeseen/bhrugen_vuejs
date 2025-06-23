@@ -1,7 +1,14 @@
 <template>
-  <Header />
-  <RouterView></RouterView>
-  <Footer />
+  <div class="min-h-screen flex flex-col">
+    <!-- header content -->
+    <Header />
+    <!-- main page content -->
+    <main class="flex-grow">
+      <RouterView></RouterView>
+    </main> 
+    <!-- footer content -->
+    <Footer />
+  </div>
 </template>
 
 <script setup>
