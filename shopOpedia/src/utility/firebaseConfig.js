@@ -8,7 +8,7 @@ import { getFirestore } from 'firebase/firestore'
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: 'AIzaSyCo5dSIvwUBKjhg9kmJUFqWIqm9NlGgitM',
+  apiKey: process.env.FIREBASE_APIKEY,
   authDomain: 'shopopedia-5bd89.firebaseapp.com',
   projectId: 'shopopedia-5bd89',
   storageBucket: 'shopopedia-5bd89.firebasestorage.app',
