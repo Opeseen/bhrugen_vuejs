@@ -31,6 +31,14 @@
               >Product
             </RouterLink>
           </li>
+          <li class="nav-item">
+            <RouterLink
+              class="nav-link active"
+              aria-current="page"
+              :to="{ name: APP_ROUTE_NAMES.PRODUCT_CREATE }"
+              >Add Product
+            </RouterLink>
+          </li>
         </ul>
         <ul class="d-flex navbar-nav">
           <li class="nav-item dropdown">
