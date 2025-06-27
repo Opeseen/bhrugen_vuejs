@@ -87,11 +87,15 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue';
+import { reactive, ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { PRODUCT_CATEGORIES } from '@/constants/appConstants';
+import { useSwal } from '@/utility/useSwal';
+import productService from '@/services/productService';
+import { APP_ROUTE_NAMES } from '@/constants/routeNames';
+const { showSuccess, showError, showConfirm } = useSwal();
 
-const route = useRoute();
+const router = useRouter();
 const loading = ref(false);
 const errorList = reactive([]);
 const productObj = reactive({
@@ -103,6 +107,11 @@ const productObj = reactive({
   isBestSeller: false,
   category: '',
   image: 'https://placehold.co/600x400',
+});
+
+onMounted(() => {
+  // showError('Product creation failed');
+  // showConfirm('Are you sure');
 });
 
 async function handleSubmit() {
@@ -125,11 +134,12 @@ async function handleSubmit() {
         ...productObj,
         price: Number(productObj.price),
         salePrice: productObj.salePrice ? Number(productObj.salePrice) : null,
-        tags: productObj.tags.split(',').map((tag) => tag.trim()),
+        tags: productObj.tags.length > 0 ? productObj.tags.split(',').map((tag) => tag.trim()) : [],
         isBestSeller: Boolean(productObj.isBestSeller),
       };
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      console.log(productData);
+      await productService.createProduct(productData);
+      showSuccess('Product created successfully');
+      router.push({ name: APP_ROUTE_NAMES.PRODUCT_LIST });
     }
   } catch (error) {
     console.log(error);

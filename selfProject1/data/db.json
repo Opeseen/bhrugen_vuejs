@@ -1,15 +1,5 @@
 {
   "employees": [
-    {
-      "id": "1750092589489",
-      "firstName": "Adam",
-      "lastName": "Smith",
-      "email": "user@example.com",
-      "address": "13 Mulero Street",
-      "phone": "18072654350",
-      "state": "Lagos",
-      "city": "Agege",
-      "nationality": ""
-    }
+  
   ]
 }

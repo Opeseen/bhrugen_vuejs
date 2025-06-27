@@ -63,16 +63,25 @@
         </div>
       </div>
 
-      <div class="mt-5">
-        <button type="Submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Submit</button>
+      <div class="mt-8">
+        <!-- <button type="Submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Submit</button> -->
+        <FwbButton type="submit" class="w-30  bg-blue-400" :disabled="loading">
+          <template #prefix v-if="loading">
+            <fwb-spinner color="gray"/>
+          </template>
+          Submit
+        </FwbButton>
       </div>
     </div>
   </form>
 </template>
 
 <script setup>
-  import {reactive} from 'vue';
+  import {reactive, ref} from 'vue';
   import axios from 'axios';
+  import { FwbButton, FwbSpinner  } from 'flowbite-vue';
+
+  const loading = ref(false);
   const employeeData = reactive({
     firstName: '',
     lastName: '',
@@ -85,8 +94,10 @@
   });
 
   // Function to handle form submission
-async function submitEmployeeData(event) {  
+async function submitEmployeeData() {  
   try {
+    loading.value = true;
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     await axios.post('http://localhost:3000/employees', {
       id: Date.now().toString(),
       ...employeeData
@@ -97,6 +108,8 @@ async function submitEmployeeData(event) {
 
   } catch (error) {
     console.error('Error submitting employee data:', error);
+  }finally{
+    loading.value = false;
   }
 }
 </script>
