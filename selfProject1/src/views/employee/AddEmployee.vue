@@ -1,7 +1,7 @@
 <template>
   <h1 className="text-3xl text-center text-blue-600 mt-2">Add Employee</h1>
   <form @submit.prevent="submitEmployeeData">
-    <div class="max-w-4xl mx-auto p-4 rounded-lg shadow">
+    <div class="max-w-4xl mx-auto p-4 rounded-lg shadow bg-gray-100">
       <div class="mt-2 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-6">
         <div class="sm:col-span-2">
           <span class="block text-sm/6 font-medium text-gray-900">First name</span>
@@ -78,7 +78,7 @@
 
 <script setup>
   import {reactive, ref} from 'vue';
-  import axios from 'axios';
+  import employeeService from '../../services/employeeService';
   import { FwbButton, FwbSpinner  } from 'flowbite-vue';
 
   const loading = ref(false);
@@ -97,12 +97,7 @@
 async function submitEmployeeData() {  
   try {
     loading.value = true;
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    await axios.post('http://localhost:3000/employees', {
-      id: Date.now().toString(),
-      ...employeeData
-    });
-
+    await employeeService.createEmployee(employeeData);
     // Reset form on success
     Object.keys(employeeData).forEach(key => employeeData[key] = '');
 

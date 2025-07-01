@@ -1,13 +1,13 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import AccessDenied from '@/views/auth/AccessDenied.vue'
-import NotFound from '@/views/auth/NotFound.vue'
-import Signin from '@/views/auth/Signin.vue'
-import Signup from '@/views/auth/Signup.vue'
-import ContactUs from '@/views/home/ContactUs.vue'
-import Home from '@/views/home/Home.vue'
-import ProductList from '@/views/product/ProductList.vue'
-import ProductUpsert from '@/views/product/ProductUpsert.vue'
-import { APP_ROUTE_NAMES } from '@/constants/routeNames'
+import { createRouter, createWebHistory } from 'vue-router';
+import AccessDenied from '@/views/auth/AccessDenied.vue';
+import NotFound from '@/views/auth/NotFound.vue';
+import Signin from '@/views/auth/Signin.vue';
+import Signup from '@/views/auth/Signup.vue';
+import ContactUs from '@/views/home/ContactUs.vue';
+import Home from '@/views/home/Home.vue';
+import ProductList from '@/views/product/ProductList.vue';
+import ProductUpsert from '@/views/product/ProductUpsert.vue';
+import { APP_ROUTE_NAMES } from '@/constants/routeNames';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -52,7 +52,12 @@ const router = createRouter({
       name: APP_ROUTE_NAMES.PRODUCT_CREATE,
       component: ProductUpsert,
     },
+    {
+      path: '/product-update/:id',
+      name: APP_ROUTE_NAMES.PRODUCT_UPDATE,
+      component: ProductUpsert,
+    },
   ],
-})
+});
 
-export default router
+export default router;

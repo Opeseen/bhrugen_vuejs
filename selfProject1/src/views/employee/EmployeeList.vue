@@ -1,11 +1,11 @@
 <template>
   <h1 className="text-3xl text-center text-blue-600 mt-2">Employee Record</h1>
   <section class="p-3 mt-1 sm:p-5">
-    <div v-if="employeeList.isLoading" class="flex justify-center items-center">
+    <div v-if="loading" class="flex justify-center items-center">
       <Loader />
     </div>
     <div class="bg-gray-100 mt-4 max-w-7xl mx-auto p-4">
-      <div class="bg-white dark:bg-gray-500 relative shadow-md sm:rounded-lg overflow-hidden">
+      <div class="relative shadow-md sm:rounded-lg overflow-hidden">
         <!-- Before table div -->
         <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
           <div class="w-full md:w-1/2">
@@ -22,6 +22,12 @@
             </form>
           </div>
           <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+            <RouterLink :to="{name: APP_ROUTE_NAMES.ADD_EMPLOYEE}" class="flex items-center justify-center text-white bg-blue-400 hover:bg-blue-700 font-medium rounded-lg text-sm px-4 py-2">
+              <svg class="h-3.5 w-3.5 mr-2 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                <path d="M16 0H4a2 2 0 0 0-2 2v1H1a1 1 0 0 0 0 2h1v2H1a1 1 0 0 0 0 2h1v2H1a1 1 0 0 0 0 2h1v2H1a1 1 0 0 0 0 2h1v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4.5a3 3 0 1 1 0 6 3 3 0 0 1 0-6ZM13.929 17H7.071a.5.5 0 0 1-.5-.5 3.935 3.935 0 1 1 7.858 0 .5.5 0 0 1-.5.5Z"/>
+              </svg>
+              Add Employee
+            </RouterLink>
             <button type="button" class="flex items-center justify-center text-white bg-blue-400 hover:bg-blue-700 font-medium rounded-lg text-sm px-4 py-2">
               <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
@@ -32,12 +38,12 @@
         </div>
         <!-- Employee Table starts here -->
         <div class="overflow-x-auto">
-          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <table class="w-full text-sm text-left">
+              <thead class="text-xs  uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" class="p-4">
                     <div class="flex items-center">
-                      <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                      <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600">
                       <label for="checkbox-all-search" class="sr-only">checkbox</label>
                     </div>
                   </th>
@@ -48,11 +54,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-b dark:border-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer" @click="handleEmployeeClick(employee)" 
+                <tr class="hover:bg-gray-50 cursor-pointer" @click="handleEmployeeClick(employee.id)" 
                 v-for="employee in employeeList.employees" :key="employee.id">
                   <td class="w-4 p-4">
                     <div class="flex items-center">
-                      <input id="" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" @click.stop>
+                      <input id="" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600" @click.stop>
                       <label for="" class="sr-only">checkbox</label>
                     </div>
                   </td>
@@ -71,34 +77,38 @@
 </template>
 
 <script setup>
-  import axios from 'axios';
-  import {reactive, onMounted} from 'vue';
-  // create an empty array to store axios response data
+  import {ref, reactive, onMounted} from 'vue';
+  import { RouterLink, useRouter } from 'vue-router'
+  import employeeService from '../../services/employeeService';
+  import { APP_ROUTE_NAMES } from '../../constants/routeNames';
+
+  const router = useRouter();
+  const loading = ref(false);
+  // create an empty array to store api response data
   const employeeList = reactive({
     employees: [],
-    isLoading: false
   });
   // call this function only when the template has been rendered
   onMounted(() => {
-    loadDestination();
+    loadEmployees();
   });
 
-  // axios function api request to get data
-  function loadDestination(){
-    employeeList.isLoading = true;
-    axios.get("http://localhost:3000/employees")
-    .then((response) => {
-      new Promise((resolve) => setTimeout(resolve, 500)).then(() => {
-        employeeList.employees = response.data;
-        employeeList.isLoading = false;
-      });  
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
+  async function loadEmployees(){
+    try{
+      loading.value = true;
+      const response = await employeeService.getEmployees();
+      employeeList.employees = response.data;
+    }catch (error) {
+      console.error('Error fetching employee data:', error);
+    }finally{
+      loading.value = false;
+    }
   };
 
-  function handleEmployeeClick(employee){
-    console.log("Employee id:", employee.id);
+  function handleEmployeeClick(employeeId){
+    router.push({
+      name: APP_ROUTE_NAMES.EMPLOYEE_DETAILS,
+      params: { id: employeeId },
+    });
   };
 </script>

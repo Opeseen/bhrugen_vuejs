@@ -5,3 +5,5 @@
   <!-- Display the sign up button in green hover -->
   <slot name="signUpButton"></slot>
 </template>
+
+<!-- this component is unused -->

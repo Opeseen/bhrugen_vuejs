@@ -1,5 +1,26 @@
 {
   "employees": [
-  
+    {
+      "id": "1751158939527",
+      "firstName": "John",
+      "lastName": "Smith",
+      "email": "Kaysolak@outlook.com",
+      "address": "13 Mulero Street",
+      "phone": "5551234563",
+      "state": "Lagos",
+      "city": "Agege",
+      "nationality": ""
+    },
+    {
+      "id": "1751159032098",
+      "firstName": "Opeyemi",
+      "lastName": "Alabi",
+      "email": "Opeyemidevops@yahoo.com",
+      "address": "13 Mulero Street",
+      "phone": "5551234563",
+      "state": "Lagos",
+      "city": "Nagpur",
+      "nationality": ""
+    }
   ]
 }
