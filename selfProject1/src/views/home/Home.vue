@@ -9,7 +9,7 @@
         </p>
         <p class="mb-4 font-medium">
           Stay ahead with insights into monthly payroll trends, pending approvals,
-          and key workforce updates — all designed to streamline HR operations and enhance organizational productivity.
+          and key workforce updates — all designed to streamline HR operations and enhance organizational productivity!
         </p>
       </div>
     </div>
