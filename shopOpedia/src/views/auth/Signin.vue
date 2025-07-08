@@ -55,7 +55,7 @@ const handleSignIn = async () => {
   try {
     error.value = '';
     console.log(user);
-    await showSuccess('Login successfully');
+    await showSuccess('Login Successfully');
     router.push({ name: APP_ROUTE_NAMES.HOME });
   } catch (err) {
     error.value = err.message;
