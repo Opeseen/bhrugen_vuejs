@@ -35,8 +35,8 @@
             <RouterLink
               class="nav-link active"
               aria-current="page"
-              :to="{ name: APP_ROUTE_NAMES.PRODUCT_CREATE }"
-              >Add Product
+              :to="{ name: APP_ROUTE_NAMES.CONTACT_US }"
+              >Contact Us
             </RouterLink>
           </li>
         </ul>
@@ -64,7 +64,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" v-if="!authStore.isAuthenticated">
             <RouterLink
               class="nav-link active"
               aria-current="page"
@@ -72,13 +72,21 @@
               >Sign In
             </RouterLink>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" v-if="!authStore.isAuthenticated">
             <RouterLink
               class="nav-link active"
               aria-current="page"
               :to="{ name: APP_ROUTE_NAMES.SIGN_UP }"
               >Sign Up
             </RouterLink>
+          </li>
+          <li class="nav-items" v-if="authStore.isAuthenticated">
+            <button
+              class="nav-link"
+              @click="[authStore.signOutUser(), router.push({ name: APP_ROUTE_NAMES.HOME })]"
+            >
+              Sign Out
+            </button>
           </li>
         </ul>
       </div>
@@ -87,11 +95,13 @@
 </template>
 
 <script setup>
-import { RouterLink } from 'vue-router'
-import { APP_ROUTE_NAMES } from '@/constants/routeNames'
-import { useRouter } from 'vue-router'
-import { useThemeStore } from '@/stores/themeStore'
+import { RouterLink } from 'vue-router';
+import { APP_ROUTE_NAMES } from '@/constants/routeNames';
+import { useRouter } from 'vue-router';
+import { useThemeStore } from '@/stores/themeStore';
+import { useAuthStore } from '@/stores/authStore';
 
-const router = useRouter()
-const themeStore = useThemeStore()
+const authStore = useAuthStore();
+const router = useRouter();
+const themeStore = useThemeStore();
 </script>
